@@ -1,20 +1,20 @@
 DATASET:
-  TRAIN_FILE_LIST: /apdcephfs_cq2/share_1290939/wenxuazhang/code/file_list/train.txt
-  EVAL_FILE_LIST: /apdcephfs_cq2/share_1290939/wenxuazhang/code/file_list/val.txt
-  TRAIN_BATCH_SIZE: 32
-  EVAL_BATCH_SIZE: 32
+  TRAIN_FILE_LIST: ./preprocessed_images/train.txt
+  EVAL_FILE_LIST: ./preprocessed_images/val.txt
+  TRAIN_BATCH_SIZE: 16  
+  EVAL_BATCH_SIZE: 16
   EXP: True
   EXP_DIM: 64
-  FRAME_LEN: 32
+  FRAME_LEN: 32  
   COEFF_LEN: 73
   NUM_CLASSES: 46
-  AUDIO_ROOT_PATH: /apdcephfs_cq2/share_1290939/wenxuazhang/voxceleb1/wav
-  COEFF_ROOT_PATH: /apdcephfs_cq2/share_1290939/wenxuazhang/voxceleb1/wav2lip_3dmm
-  LMDB_PATH: /apdcephfs_cq2/share_1290939/shadowcun/datasets/VoxCeleb/v1/imdb
-  DEBUG: True
-  NUM_REPEATS: 2
+  AUDIO_ROOT_PATH: ./audio
+  COEFF_ROOT_PATH: ./preprocessed_images/coefficients
+  LMDB_PATH: None  # Set to None if not using LMDB datasets
+  DEBUG: False
+  NUM_REPEATS: 1
   T: 40
-  
+
 
 MODEL:
   FRAMEWORK: V2
@@ -34,7 +34,7 @@ MODEL:
     
 
 TRAIN:
-  MAX_EPOCH: 300
+  MAX_EPOCH: 50
   GENERATOR:
     LR: 2.0e-5
   DISCRIMINATOR:
@@ -45,7 +45,7 @@ TRAIN:
     W_LM: 1.0e-2
     W_LM_MOUTH: 0
     W_REG: 0
-    W_SYNC: 0
+    W_SYNC: 1
     W_COLOR: 0
     W_EXPRESSION: 0
     W_LIPREADING: 0.01
@@ -53,6 +53,5 @@ TRAIN:
     W_EYE_BLINK: 4
 
 TAG:
-  NAME:  small_dataset
-
+  NAME:  small_dataset_with_one_audio
 
